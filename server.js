@@ -62,7 +62,7 @@ app.get('/uptime', function(req, res) {
 
 var	totUsers = 0;
 
-app.listen(8080);
+app.listen(process.env['app_port'] || 8080);
 
 console.log('Express server listening in %s mode', app.settings.env);
 

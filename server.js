@@ -39,6 +39,19 @@ app.get('/', function(req, res) {
 	res.sendfile('index.html');
 });
 
+app.get('/trigger.html', function(req, res) {
+	res.sendfile('trigger.html');
+});
+
+app.get('/trigger', function(req, res) {
+	console.log('Trigger command arrived from HTTP');
+
+	io.sockets.emit('trigger');
+
+	res.writeHead(200, {'Content-Type': 'text/plain'});
+	res.end('Triggered');
+});
+
 app.get('/uptime', function(req, res) {
 	res.end('The server has been up for: '+ secondsToString( process.uptime().toString() ) );
 });
@@ -80,6 +93,8 @@ io.sockets.on('connection', function(client) {
 	io.sockets.emit('tot', { tot: totUsers });
 
 	client.on('trigger', function() {
+		console.log('Trigger command arrived from js');
+
 		io.sockets.emit('trigger');
 	});
 

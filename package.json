@@ -1,0 +1,16 @@
+{
+  "name": "hartwall",
+  "author" : "Fabrizio Codello",
+  "subdomain": "hartwall",
+  "scripts": {
+    "start": "server.js"
+  },
+  "version": "0.0.0",
+  "engines": {
+    "node": "0.6.x"
+  },
+  "dependencies": {
+    "express": "2.5.x",
+    "socket.io": "0.9.x"
+  }
+}

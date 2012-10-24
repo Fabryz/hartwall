@@ -40,11 +40,11 @@ app.get('/', function(req, res) {
 });
 
 app.get('/trigger.html', function(req, res) {
-	res.sendfile('trigger.html');
+	res.sendfile('trigger.html'); res.send('user ' + req.params.id);
 });
 
-app.get('/trigger', function(req, res) {
-	console.log('Trigger command arrived from HTTP');
+app.get('/:rfid/h1/94', function(req, res) {
+	console.log('Trigger command arrived from HTTP, rfid: '+ req.params.rfid);
 
 	io.sockets.emit('trigger');
 

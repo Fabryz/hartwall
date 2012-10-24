@@ -8,17 +8,34 @@
 
   <script type="text/javascript" src="./js/jquery-1.7.2.min.js"></script>
   <script type="text/javascript" src="./socket.io/socket.io.js"></script>
+
   <script type="text/javascript" src="./js/hartwall.js"></script>
+  <script type="text/javascript" src="./js/h5utils.js"></script>
+  <script type="text/javascript" src="./js/videoControl.js"></script>
 
 </head>
 <body>
   <div id="wrapper">
-    <img id="player1" class="video" src="img/video1.png" alt="Video1" />
-    <img id="player2" class="video" src="img/video2.png" alt="Video2" />
+    <!-- <img id="player1" class="video" src="img/video1.png" alt="Video1" /> -->
+
+    <video id="player1" class="video" preload="metadata" autoplay="autoplay" loop="loop"> <!-- https://bugzilla.mozilla.org/show_bug.cgi?id=676422 -->
+      <source src="video/video1.mp4" type="video/mp4" />
+    </video>
+  
+
+    <!-- <img id="player2" class="video" src="img/video2.png" alt="Video2" /> -->
+
+    <video id="player2" class="video" preload="metadata"> <!-- https://bugzilla.mozilla.org/show_bug.cgi?id=676422 -->
+      <source src="video/video2.mp4" type="video/mp4" />
+    </video>
+
   </div>
   <div id="controls">
     <button id="fullscreen">Go fullscreen!</button>
     <button id="trigger">Trigger</button>
+    <input type="button" id="play" value="play" />
+    <span id="position">00:00</span> / <span id="duration">loading...</span>
+    <p>Video loaded: <span id="using">loading...</span></p>
   </div>
 </body>
 </html>

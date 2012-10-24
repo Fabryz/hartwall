@@ -64,9 +64,9 @@ $(document).ready(function() {
   socket.on('trigger', function(data) {
     Debug.log("Trigger event arrived.");
 
-    $('#player1').toggleClass('fade').toggleClass('out');
+    $('#player1').toggleClass('fadeout');
 
-    $('#player2').toggleClass('fade').toggleClass('in');
+    $('#player2').toggleClass('fadein');
   });
 
 });

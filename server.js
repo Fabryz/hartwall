@@ -40,7 +40,7 @@ app.get('/', function(req, res) {
 });
 
 app.get('/trigger.html', function(req, res) {
-	res.sendfile('trigger.html'); res.send('user ' + req.params.id);
+	res.sendfile('trigger.html');
 });
 
 app.get('/:rfid/h1/94', function(req, res) {
@@ -60,7 +60,8 @@ app.get('/uptime', function(req, res) {
 * Main
 */
 
-var	totUsers = 0;
+var	totUsers = 0,
+	playingEventVideo = false;
 
 app.listen(process.env.PORT || 8001);
 
@@ -95,7 +96,26 @@ io.sockets.on('connection', function(client) {
 	client.on('trigger', function() {
 		console.log('Trigger command arrived from js');
 
-		io.sockets.emit('trigger');
+		if (playingEventVideo == false) {
+			console.log('Triggering event video.');
+
+			playingEventVideo = true;
+
+			io.sockets.emit('trigger');
+		} else {
+			console.log('Unable to trigger event video: video already playing.');
+		}
+
+	});
+
+	client.on('eventVideoEnded', function() {
+		console.log('Event video ended');
+
+		playingEventVideo = false;
+
+		io.sockets.emit('restore');
+
+		console.log('Sent restore event');
 	});
 
 	client.on('disconnect', function() {

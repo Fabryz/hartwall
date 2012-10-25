@@ -32,7 +32,7 @@ $(document).ready(function() {
 
   // this used to be canplay, but really it should have been loadedmetadata - sorry folks
   function loadedmetadata() {
-    video.muted = true;
+    video.muted = false;
     ready = true;
     document.querySelector('#duration').innerHTML = asTime(this.duration);
     using.innerHTML = this.currentSrc;
